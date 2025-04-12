@@ -29,7 +29,7 @@ def build_model():
 @st.cache_resource
 def load_model():
     model = build_model()
-    model.load_weights("best_model.weights.h5")  # Make sure this file is in the repo
+    model.load_weights("best_model_compressed.h5")  # Make sure this file is in the repo
     return model
 
 model = load_model()
