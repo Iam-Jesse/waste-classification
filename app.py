@@ -17,10 +17,13 @@ def build_model():
     x = layers.Conv2D(128, (3, 3), activation='relu')(x)
     x = layers.MaxPooling2D(2, 2)(x)
 
+    x = layers.Conv2D(256, (3, 3), activation='relu')(x)
+    x = layers.MaxPooling2D(2, 2)(x)
+
     x = layers.Flatten()(x)
     x = layers.Dense(128, activation='relu')(x)
     x = layers.Dropout(0.5)(x)
-    outputs = layers.Dense(10, activation='softmax')(x)
+    outputs = layers.Dense(9, activation='softmax')(x)
 
     model = models.Model(inputs=inputs, outputs=outputs)
     return model
