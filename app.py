@@ -2,6 +2,8 @@ import streamlit as st
 import tensorflow as tf
 import numpy as np
 from PIL import Image
+import io
+from tempfile import NamedTemporaryFile
 
 # Set page title
 st.title("Garbage Classification - Model 2 (SGD)")
@@ -10,8 +12,12 @@ st.title("Garbage Classification - Model 2 (SGD)")
 model_file = st.file_uploader("Upload your Keras Model (.h5)", type=["h5"])
 
 if model_file is not None:
-    # Load model from the uploaded .h5 file
-    model = tf.keras.models.load_model(model_file)
+    # Save uploaded file to a temporary file on disk (required for .h5 loading)
+    with NamedTemporaryFile(delete=False, suffix=".h5") as temp_model_file:
+        temp_model_file.write(model_file.read())
+        temp_model_file.flush()
+        model = tf.keras.models.load_model(temp_model_file.name)
+
     st.success("Model loaded successfully!")
 
     # Upload image for prediction
@@ -27,7 +33,7 @@ if model_file is not None:
         predictions = model.predict(img_array)
         class_id = np.argmax(predictions)
 
-        # Update this to match your actual class names
+        # Class names (update if needed)
         class_names = ['battery', 'biological', 'cardboard', 'clothes', 'glass', 
                        'metal', 'paper', 'plastic', 'shoes']
 
