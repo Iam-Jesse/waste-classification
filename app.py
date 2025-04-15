@@ -42,7 +42,7 @@ class CNNModel1(nn.Module):
 
 # Load model
 model = CNNModel1(num_classes=9)
-model.load_state_dict(torch.load("best_model1.pth", map_location=torch.device('cpu')))
+model.load_state_dict(torch.load("best_model2.pth", map_location=torch.device('cpu')))
 model.eval()
 
 # Class names (in order)
