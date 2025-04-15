@@ -42,7 +42,7 @@ class CNNModel1(nn.Module):
 
 # Load model
 model = CNNModel1(num_classes=9)
-model.load_state_dict(torch.load("best_model2.pth", map_location=torch.device('cpu')))
+model.load_state_dict(torch.load("best_model1.pth", map_location=torch.device('cpu')))
 model.eval()
 
 # Class names (in order)
@@ -55,14 +55,14 @@ transform = transforms.Compose([
     transforms.ToTensor(),
 ])
 
-st.title("Garbage Classification (Model 2)")
+st.title("Garbage Classification (Model 1)")
 
 # Image uploader
 uploaded_image = st.file_uploader("Upload a garbage image", type=["jpg", "jpeg", "png"])
 
 if uploaded_image:
     image = Image.open(uploaded_image).convert('RGB')
-    st.image(image, caption="Uploaded Image", use_column_width=True)
+    st.image(image, caption="Uploaded Image", use_container_width=True)
 
     # Preprocess image
     input_tensor = transform(image).unsqueeze(0)  # Add batch dimension
