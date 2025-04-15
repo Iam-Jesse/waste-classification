@@ -55,7 +55,7 @@ transform = transforms.Compose([
     transforms.ToTensor(),
 ])
 
-st.title("Garbage Classification (Model 1)")
+st.title("Garbage Classification (Model 2)")
 
 # Image uploader
 uploaded_image = st.file_uploader("Upload a garbage image", type=["jpg", "jpeg", "png"])
