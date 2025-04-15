@@ -1,4 +1,7 @@
 streamlit
-tensorflow
+torch
+torchvision
+Pillow
 numpy
-pillow
+matplotlib
+scikit-learn
